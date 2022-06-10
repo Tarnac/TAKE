@@ -1,0 +1,32 @@
+<div class="col-sm-6">
+    <h2>List of movies</h2>
+    <div *ngIf="cart.length == 0">
+        <p>Cart is empty!</p>
+    </div>
+    <div *ngIf="cart.length > 0">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let movie of cart">
+        <td>          
+          <a routerLink="/movies/detail/{{movie.id}}" style="text-decoration: none;">
+            <span>{{movie.title}}</span>
+          </a> 
+        </td>
+        <td style="text-align: center;">{{movie.price}} USD</td>
+        <button title="Remove" (click)="removeMovieFromCart(movie)">Remove</button>    
+      </tr>
+      </tbody>
+      <td></td>
+      <th>Total: {{totalPrice}} USD</th>
+    </table>
+    </div>
+    <button style="margin-right: 10px;" routerLink="/movies">Continue shopping</button>
+    <button style="margin-right: 10px;" title="Clear" (click)="clear()">Clear Cart</button>
+    <button [disabled]="cart.length == 0" title="Purchase" >Purchase</button>
+</div>

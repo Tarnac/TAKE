@@ -1,0 +1,28 @@
+<div *ngIf="movie">
+    <h2>{{ movie.title | uppercase }}
+    details</h2>
+    <div><span><b>Id:</b> </span>{{movie.id}}</div>
+    <div>
+    <p> <b>Title:</b> {{movie.title}}</p>
+    <p> <b>Category:</b>
+        {{movie.category.name}}
+    </p>
+    <p> <b>Year:</b>
+        {{movie.year}}
+    </p>
+    <p style="width: 700px;"> <b>Story:</b>
+        {{movie.plot}}
+    </p>
+    <p> <b>Price:</b>
+        {{movie.price}} USD
+    </p>
+    </div>
+    <div *ngIf="!isMovieInCart(movie)">
+        <button title="AddToCart" (click)="addMovieToCart(movie)">AddToCart</button>
+      </div>
+      <div *ngIf="isMovieInCart(movie)">
+        <button title="InCart" (click)="removeMovieFromCart(movie)">InCart</button>
+      </div>
+    <br>
+    <button (click)="goBack()">Back</button>
+</div>

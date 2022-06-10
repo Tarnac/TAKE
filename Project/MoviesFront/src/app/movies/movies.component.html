@@ -1,0 +1,37 @@
+<div class="col-sm-6">
+<h2>List of movies</h2>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>
+      Category
+      <select (change)="getMoviesByCategory($event)">
+        <option selected value="ALL">ALL</option>
+        <option *ngFor="let category of categories" [value]="category.name">
+          {{category.name}}
+        </option>
+      </select>
+    </th>
+    <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let movie of movies">
+    <td style="width: 400px;">          
+      <a routerLink="/movies/detail/{{movie.id}}" style="text-decoration: none;">
+        <span>{{movie.title}}</span>
+      </a> 
+    </td>
+    <td>{{movie.category.name}}</td>
+    <td>{{movie.price}} USD</td>
+    <div *ngIf="!isMovieInCart(movie)">
+      <button title="AddToCart" (click)="addMovieToCart(movie)">AddToCart</button>
+    </div>
+    <div *ngIf="isMovieInCart(movie)">
+      <button title="InCart" (click)="removeMovieFromCart(movie)">InCart</button>
+    </div>
+  </tr>
+  </tbody>
+</table>
+</div>
